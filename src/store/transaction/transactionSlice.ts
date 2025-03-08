@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addTransaction } from "./transactionThunks";
+import { addTransaction, getTransaction } from "./transactionThunks";
 
 
 export interface TransactionType {
@@ -7,14 +7,16 @@ export interface TransactionType {
     category: string;
     amount: number | string;
     data: string;
-    loading?: boolean;
+    id?: string;
 }
 
-const initialState: TransactionType = {
-    type: '',
-    category: '',
-    amount: 0,
-    data: '',
+interface AllTransaction {
+    transactions: TransactionType[];
+    loading: boolean;
+}
+
+const initialState: AllTransaction = {
+    transactions: [],
     loading: false,
 }
 
@@ -32,6 +34,18 @@ const transactionSlice = createSlice({
             })
             .addCase(addTransaction.rejected, (state) => {
                 state.loading = false;
+                
+            })
+            .addCase(getTransaction.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(getTransaction.fulfilled, (state, action) => {
+                state.loading = false;
+                state.transactions = action.payload;
+            })
+            .addCase(getTransaction.rejected, (state) => {
+                state.loading = false;
+
             })
     }
 })

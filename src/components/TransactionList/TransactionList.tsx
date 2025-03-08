@@ -2,6 +2,7 @@ import Total from '../Total/Total';
 import './transactionList.css'
 
 const TransactionList = () => {
+    
     return (
         <div>
             <Total/>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import './formTransaction.css'
 import { TransactionType } from '../../store/transaction/transactionSlice';
-import { addTransaction } from '../../store/transaction/transactionThunks';
+import { addTransaction, getTransaction } from '../../store/transaction/transactionThunks';
 import Spinner from '../../UI/Spinner/Spinner';
 import { useNavigate } from 'react-router-dom';
 
@@ -27,6 +27,7 @@ const FormTransaction = () => {
         const date = new Date()
         const transactionData = {...transaction, data: date.toISOString()}
         dispatch(addTransaction(transactionData))
+        dispatch(getTransaction())
         setTransaction({type: '', category: '', amount: '', data: ''})
         navigate('/')
     }
