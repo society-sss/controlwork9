@@ -21,7 +21,7 @@ const TransactionList = () => {
                             <p>{tr.data} <b>{tr.category}</b></p>
                         </div>
                         <div className="transaction-delete-or-rename">
-                            <p>{tr.category === 'income' ? `+${tr.amount}` : `-${tr.amount}`} kgs</p>
+                            <p>{tr.type === 'income' ? `+${tr.amount}` : `-${tr.amount}`} kgs</p>
                             <button type="button" className="btn btn-warning">rename</button>
                             <button type="button" className="btn btn-danger">delete</button>
                         </div>

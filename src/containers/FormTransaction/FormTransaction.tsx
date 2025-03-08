@@ -24,12 +24,16 @@ const FormTransaction = () => {
     }
 
     const addTransactionButton = () => {
-        const date = new Date()
-        const transactionData = {...transaction, data: date.toISOString()}
-        dispatch(addTransaction(transactionData))
-        dispatch(getTransaction())
-        setTransaction({type: '', category: '', amount: '', data: ''})
-        navigate('/')
+        if(transaction.type) {
+            const date = new Date()
+            const transactionData = {...transaction, data: date.toISOString()}
+            dispatch(addTransaction(transactionData))
+            dispatch(getTransaction())
+            setTransaction({type: '', category: '', amount: '', data: ''})
+            navigate('/')
+        } else {
+            alert('выберите тип транзакции')
+        }
     }
 
     return (
@@ -39,6 +43,7 @@ const FormTransaction = () => {
                 <hr />
                 <label htmlFor="type">type</label>
                 <select name="type" id="type" value={transaction.type} onChange={addTransactionFunction}>
+                    <option value=""></option>
                     <option value="income">доход</option>
                     <option value="expense">расход</option>
                 </select>
