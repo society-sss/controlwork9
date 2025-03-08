@@ -4,10 +4,11 @@ import { TransactionType } from "./transactionSlice";
 
 const BASE_URL = 'https://elzar-js-27-default-rtdb.europe-west1.firebasedatabase.app/';
 
-export const addTransaction = createAsyncThunk<void, TransactionType>(
+export const addTransaction = createAsyncThunk<TransactionType, TransactionType>(
     "transaction/addTransaction",
     async (transaction) => {
-        await axios.post(`${BASE_URL}/transaction.json`, transaction)
+        const responce = await axios.post(`${BASE_URL}/transaction.json`, transaction)
+        return {...transaction, id: responce.data.id}
     }
 )
 

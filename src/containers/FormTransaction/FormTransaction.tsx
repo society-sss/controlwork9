@@ -34,22 +34,21 @@ const FormTransaction = () => {
 
     return (
         <>
-            {loading ? <Spinner/> : (
-                <div className='main-form'>
-                    <h2>Add expense / Income</h2>
-                    <hr />
-                    <label htmlFor="type">type</label>
-                    <select name="type" id="type" value={transaction.type} onChange={addTransactionFunction}>
-                        <option value="income">доход</option>
-                        <option value="expense">расход</option>
-                    </select>
-                    <label htmlFor="category">category</label>
-                    <input name='category' type="text" id="category" placeholder="категория" value={transaction.category} onChange={addTransactionFunction}/>
-                    <label htmlFor="amount">amount</label>
-                    <input name='amount' type="number" id='amount' placeholder="kgs" value={transaction.amount} onChange={addTransactionFunction}/>
-                    <button type="button" className="btn btn-success add" onClick={() => addTransactionButton()}>add</button>
-                </div>
-            )}
+            <div className='main-form'>
+                <h2>Add expense / Income</h2>
+                <hr />
+                <label htmlFor="type">type</label>
+                <select name="type" id="type" value={transaction.type} onChange={addTransactionFunction}>
+                    <option value="income">доход</option>
+                    <option value="expense">расход</option>
+                </select>
+                <label htmlFor="category">category</label>
+                <input name='category' type="text" id="category" placeholder="категория" value={transaction.category} onChange={addTransactionFunction}/>
+                <label htmlFor="amount">amount</label>
+                <input name='amount' type="number" id='amount' placeholder="kgs" value={transaction.amount} onChange={addTransactionFunction}/>
+                <button type="button" className="btn btn-success add" onClick={addTransactionButton}>add</button>
+            </div>
+            
         </>
     )
 }
