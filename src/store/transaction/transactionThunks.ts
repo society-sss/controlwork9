@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { TransactionType } from "./transactionSlice";
+import { PostTransactionType, TransactionType } from "./transactionSlice";
 
 const BASE_URL = 'https://elzar-js-27-default-rtdb.europe-west1.firebasedatabase.app/';
 
@@ -31,5 +31,12 @@ export const deleteTransaction = createAsyncThunk<void, string>(
     "transaction/deleteTransaction",
     async (id) => {
         await axios.delete(`${BASE_URL}/transaction/${id}.json`)
+    }
+)
+
+export const renameTransaction = createAsyncThunk<void, PostTransactionType>(
+    "transaction/renameTransaction",
+    async ({id, transaction}) => {
+        await axios.put(`${BASE_URL}/transaction/${id}.json`, transaction)
     }
 )
