@@ -5,7 +5,7 @@ import { addTransaction } from "./transactionThunks";
 export interface TransactionType {
     type: string;
     category: string;
-    amount: string;
+    amount: number | string;
     data: string;
     loading?: boolean;
 }
@@ -13,7 +13,7 @@ export interface TransactionType {
 const initialState: TransactionType = {
     type: '',
     category: '',
-    amount: '',
+    amount: 0,
     data: '',
     loading: false,
 }
