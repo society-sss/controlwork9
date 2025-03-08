@@ -16,7 +16,7 @@ const TransactionList = () => {
             <Total/>
             {loading ? <Spinner/> : (
                 transactions.map(tr => (
-                    <div className="main-transaction">
+                    <div key={tr.id} className="main-transaction">
                         <div className="transaction-info">
                             <p>{tr.data} <b>{tr.category}</b></p>
                         </div>
