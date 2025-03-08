@@ -23,11 +23,11 @@ const TransactionList = () => {
         }
     }
     return (
-        <div>
+        <>
             <Total/>
             {loading ? <Spinner/> : (
-                transactions.map(tr => (
-                    <div key={tr.id} className="main-transaction">
+                transactions.map((tr, i) => (
+                    <div key={`${tr.id}${i}`} className="main-transaction">
                         <div className="transaction-info">
                             <p>{tr.data} <b>{tr.category}</b></p>
                         </div>
@@ -39,7 +39,7 @@ const TransactionList = () => {
                     </div>
                 ))
             )}
-        </div>
+        </>
     )
 }
 
