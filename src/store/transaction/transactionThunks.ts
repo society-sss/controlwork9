@@ -26,3 +26,10 @@ export const getTransaction = createAsyncThunk<TransactionType[]>(
         return transactionsArray
     }
 )
+
+export const deleteTransaction = createAsyncThunk<void, string>(
+    "transaction/deleteTransaction",
+    async (id) => {
+        await axios.delete(`${BASE_URL}/transaction/${id}.json`)
+    }
+)

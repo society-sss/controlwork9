@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addTransaction, getTransaction } from "./transactionThunks";
+import { addTransaction, deleteTransaction, getTransaction } from "./transactionThunks";
 
 
 export interface TransactionType {
@@ -45,6 +45,17 @@ const transactionSlice = createSlice({
                 state.transactions = action.payload;
             })
             .addCase(getTransaction.rejected, (state) => {
+                state.loading = false;
+
+            })
+            .addCase(deleteTransaction.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(deleteTransaction.fulfilled, (state, action) => {
+                state.loading = false;
+                state.transactions = state.transactions.filter(tr => tr.id !== action.meta.arg);
+            })
+            .addCase(deleteTransaction.rejected, (state) => {
                 state.loading = false;
 
             })

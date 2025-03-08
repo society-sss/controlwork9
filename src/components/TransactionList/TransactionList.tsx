@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import Spinner from '../../UI/Spinner/Spinner';
 import Total from '../Total/Total';
 import './transactionList.css'
-import { getTransaction } from '../../store/transaction/transactionThunks';
+import { deleteTransaction, getTransaction } from '../../store/transaction/transactionThunks';
 
 const TransactionList = () => {
     const {loading, transactions} = useAppSelector(state => state.transaction)
@@ -11,6 +11,14 @@ const TransactionList = () => {
     useEffect(() => {
         dispatch(getTransaction())
     }, [dispatch])
+
+    const deleteTransactionFunction = (id: string | undefined) => {
+        if(id) {
+            dispatch(deleteTransaction(id))
+        } else {
+            alert('ошбка при удалении')
+        }
+    }
     return (
         <div>
             <Total/>
@@ -23,7 +31,7 @@ const TransactionList = () => {
                         <div className="transaction-delete-or-rename">
                             <p>{tr.type === 'income' ? `+${tr.amount}` : `-${tr.amount}`} kgs</p>
                             <button type="button" className="btn btn-warning">rename</button>
-                            <button type="button" className="btn btn-danger">delete</button>
+                            <button type="button" className="btn btn-danger" onClick={() => deleteTransactionFunction(tr.id)}>delete</button>
                         </div>
                     </div>
                 ))
