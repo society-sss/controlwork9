@@ -1,0 +1,22 @@
+
+.main-transaction {
+    display: flex;
+    justify-content: space-between;
+    border: 2px grey solid;
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    align-items: center;
+}
+
+.transaction-delete-or-rename {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+p,
+b {
+    margin: 0;
+    padding: 0;
+}
